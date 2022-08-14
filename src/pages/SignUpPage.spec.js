@@ -1,6 +1,7 @@
 import SignUpPage from './SignUpPage.vue'
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import { render, screen, cleanup, fireEvent } from '@testing-library/vue'
+import axios from 'axios'
 
 describe('SignUpPage', () => {
   afterEach(cleanup)
@@ -93,6 +94,18 @@ describe('SignUpPage', () => {
       const button = screen.getByRole('button', { name: '登録' })
 
       const mockFn = vi.fn()
+      axios.post = mockFn
+
+      await fireEvent.click(button)
+
+      const firstCall = mockFn.mock.calls[0]
+      const body = firstCall[1]
+
+      expect(body).toEqual({
+        username: 'Usern',
+        email: 'user@example.com',
+        password: 'P4ssw0rd',
+      })
     })
   })
 })

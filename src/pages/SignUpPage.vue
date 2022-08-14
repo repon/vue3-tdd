@@ -8,10 +8,12 @@
   <input id="password" type="password" v-model="password" />
   <label for="confirm_password">パスワードの確認</label>
   <input id="confirm_password" type="password" v-model="confirm_password" />
-  <button :disabled="isDisabled">登録</button>
+  <button :disabled="isDisabled" @click="submit">登録</button>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'SignUpPage',
   data() {
@@ -32,6 +34,15 @@ export default {
       )
         return false
       return true
+    }
+  },
+  methods: {
+    submit() {
+      axios.post('/api/v1/users', {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+      })
     }
   }
 }
