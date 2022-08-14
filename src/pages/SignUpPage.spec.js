@@ -11,47 +11,47 @@ describe("SignUpPage", () => {
   afterEach(cleanup);
 
   describe("レイアウト", () => {
-    it("Sign Upヘッダーが表示される", () => {
+    it.concurrent("Sign Upヘッダーが表示される", () => {
       const header = screen.getByRole("heading", { name: "Sign Up" });
       expect(header).toBeTruthy();
     });
 
-    it("ユーザー名の入力フォームが表示される", () => {
+    it.concurrent("ユーザー名の入力フォームが表示される", () => {
       const input = screen.queryByLabelText("ユーザー名");
       expect(input).toBeTruthy();
     });
 
-    it("Eメールの入力フォームが表示される", () => {
+    it.concurrent("Eメールの入力フォームが表示される", () => {
       const input = screen.queryByLabelText("メールアドレス");
       expect(input).toBeTruthy();
     });
 
-    it("パスワードが表示される", () => {
+    it.concurrent("パスワードが表示される", () => {
       const input = screen.queryByLabelText("パスワード");
       expect(input).toBeTruthy();
     });
 
-    it("パスワードの確認が表示される", () => {
+    it.concurrent("パスワードの確認が表示される", () => {
       const input = screen.queryByLabelText("パスワードの確認");
       expect(input).toBeTruthy();
     });
 
-    it("パスワードの入力フォームのtypeがpasswordであること", () => {
+    it.concurrent("パスワードの入力フォームのtypeがpasswordであること", () => {
       const input = screen.getByLabelText("パスワード");
       expect(input.type).toBe("password");
     });
 
-    it("パスワードの確認の入力フォームのtypeがpasswordであること", () => {
+    it.concurrent("パスワードの確認の入力フォームのtypeがpasswordであること", () => {
       const input = screen.getByLabelText("パスワードの確認");
       expect(input.type).toBe("password");
     });
 
-    it("登録用のボタンが表示される", () => {
+    it.concurrent("登録用のボタンが表示される", () => {
       const button = screen.getByRole("button", { name: "登録" });
       expect(button).toBeTruthy();
     });
 
-    it("登録ボタンが初期表示時はdisableとなっている", () => {
+    it.concurrent("登録ボタンが初期表示時はdisableとなっている", () => {
       const button = screen.getByRole("button", { name: "登録" });
       expect(button.disabled).toBeTruthy();
     });
